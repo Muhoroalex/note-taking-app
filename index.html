@@ -1,86 +1,193 @@
-<html>
+<html lang="en">
 <head>
-    <title>Create Your Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+ <!-- https://cdn.tailwindcss.com points to the Content Delivery Network (CDN) for Tailwind CSS. Using a CDN is a good practice because it allows the browser to download the file from a server that's geographically closer to the user, improving loading speed.-->
     <script src="https://cdn.tailwindcss.com"></script>
+     <!--. Font Awesome is a popular icon library that provides scalable vector icons that can be customized with CSS. This is why i have used it -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .modal {
+            display: none;
+           }
+        .modal.active {
+            display: flex;
+     }
+        .rating-number {
+            cursor: pointer;
+            padding: 0.5rem;
+             border-radius: 50%;
+            transition: all 0.3s;
+        }
+        .rating-number:hover {
+             color: #34D399; 
+        }
+        .rating-number.selected {
+            font-weight: bold;
+            color: #10B981; 
+            border: 2px solid #10B981; 
+    
+        }
+        .rating-number[data-rating="1"]:hover,
+        .rating-number[data-rating="2"]:hover,
+        .rating-number[data-rating="3"]:hover {
+            color: #EF4444; 
+        }
+        .rating-number[data-rating="4"]:hover,
+        .rating-number[data-rating="5"]:hover,
+        .rating-number[data-rating="6"]:hover {
+            color: #F59E0B; 
+        }
+        .rating-number[data-rating="7"]:hover,
+        .rating-number[data-rating="8"]:hover,
+        .rating-number[data-rating="9"]:hover,
+        .rating-number[data-rating="10"]:hover {
+            color: #10B981; 
+        }
+    </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <div class="flex justify-between mb-6">
-            <button class="text-gray-500">Student</button>
-            <button class="text-gray-900 font-semibold">Non-Student</button>
-        </div>
-        <h2 class="text-2xl font-bold mb-6">Create your account</h2>
-        <form>
-            <div class="mb-4">
-                <label class="block text-gray-700">Personal Information</label>
-                <div class="flex space-x-4 mt-2">
-                    <input type="text" placeholder="Enter your first name" class="w-1/2 p-2 border rounded-md bg-gray-100">
-                    <input type="text" placeholder="Enter your last name" class="w-1/2 p-2 border rounded-md bg-gray-100">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Button to open the feedback modal -->
+    <button id="openModal" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Open Feedback Form</button>
+
+    <!-- Feedback modal -->
+    <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <!-- Modal header -->
+            <div class="bg-green-100 p-4 rounded-lg mb-6">
+                <div class="flex items-center mb-2">
+                    <i class="fas fa-star text-green-500"></i>
+                    <h2 class="ml-2 text-lg font-semibold">Rate Your Experience</h2>
                 </div>
+                <p class="text-gray-600">Please rate your experience with our product on a scale of 1-10.</p>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Email Address</label>
-                <div class="relative mt-2">
-                    <input type="email" placeholder="Enter your email address" class="w-full p-2 border rounded-md bg-gray-100">
-                    <i class="fas fa-envelope absolute right-3 top-3 text-gray-400"></i>
-                </div>
+            <!-- Rating scale -->
+            <div id="ratingScale" class="flex justify-between mb-6">
+                <span class="rating-number" data-rating="1">1</span>
+           <span class="rating-number" data-rating="2">2</span>
+                  <span class="rating-number" data-rating="3">3</span>
+              <span class="rating-number" data-rating="4">4</span>
+                <span class="rating-number" data-rating="5">5</span>
+                 <span class="rating-number" data-rating="6">6</span>
+                <span class="rating-number" data-rating="7">7</span>
+                <span class="rating-number" data-rating="8">8</span>
+             <span class="rating-number" data-rating="9">9</span>
+                <span class="rating-number" data-rating="10">10</span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Phone Number</label>
-                <div class="relative mt-2">
-                    <input type="tel" placeholder="Enter your phone number" class="w-full p-2 border rounded-md bg-gray-100">
-                    <i class="fas fa-phone absolute right-3 top-3 text-gray-400"></i>
-                </div>
+            <!-- Additional comments -->
+            <div class="mb-6">
+                <label for="comments" class="block text-gray-700 mb-2">Additional Comments</label>
+                <textarea id="comments" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Tell us more about your experience or How Alex mods can improve his products...."></textarea>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Password</label>
-                <div class="relative mt-2">
-                    <input type="password" placeholder="Create a password" class="w-full p-2 border rounded-md bg-gray-100">
-                    <i class="fas fa-eye absolute right-3 top-3 text-gray-400"></i>
-                </div>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Confirm Password</label>
-                <div class="relative mt-2">
-                    <input type="password" placeholder="Confirm your password" class="w-full p-2 border rounded-md bg-gray-100">
-                    <i class="fas fa-eye absolute right-3 top-3 text-gray-400"></i>
-                </div>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Account Type</label>
-                <div class="mt-2 space-y-2">
-                    <div class="flex items-center">
-                        <input type="radio" name="accountType" class="mr-2">
-                        <label class="flex items-center">
-                            <i class="fas fa-user-graduate mr-2 text-gray-500"></i> Admin
-                        </label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="radio" name="accountType" class="mr-2">
-                        <label class="flex items-center">
-                            <i class="fas fa-user-tie mr-2 text-gray-500"></i> user
-                        </label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="radio" name="accountType" class="mr-2">
-                        <label class="flex items-center">
-                            <i class="fas fa-user mr-2 text-gray-500"></i> Guest
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="flex items-center">
-                    <input type="checkbox" class="mr-2">
-                    <label>I agree to the <a href="#" class="text-blue-500">Terms of Service</a> and <a href="#" class="text-blue-500">Privacy Policy</a></label>
-                </div>
-            </div>
-            <button type="submit" class="w-full bg-teal-500 text-white p-2 rounded-md">Create Account</button>
-        </form>
-        <div class="text-center mt-4">
-            <p class="text-gray-500">Or sign up with</p>
+            <!-- Modal buttons -->
+            <div class="flex justify-between">
+                <button id="cancelButton" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">Cancel</button>
+                <button id="submitButton" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Submit Feedback</button>
+              </div>
+         </div>
+
+    </div>
+
+    <!-- Thank you message -->
+    <div id="thankYouMessage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-lg font-semibold">Thank you for your feedback see you !</h2>
         </div>
     </div>
+
+    <script>
+        // javascript which Get elements by calling
+        const openModalButton = document.getElementById('openModal');
+     const modal = document.getElementById('modal');
+        const cancelButton = document.getElementById('cancelButton');
+           const submitButton = document.getElementById('submitButton');
+        const ratingScale = document.getElementById('ratingScale');
+     const comments = document.getElementById('comments');
+          const thankYouMessage = document.getElementById('thankYouMessage');
+
+              let selectedRating = null;
+
+        // Open modal
+              openModalButton.addEventListener('click', () => {
+                       modal.classList.add('active');
+        });
+
+        // Close modal on cancel button click
+        cancelButton.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Close modal on submit button click and store feedback
+               submitButton.addEventListener('click', () => {
+            if (selectedRating) {
+                        const feedback = {
+                       rating: selectedRating,
+                       comments: comments.value
+                };
+                          // Store feedback in localStorage
+                       localStorage.setItem('feedback_' + new Date().getTime(), JSON.stringify(feedback));
+                modal.classList.remove('active');
+                       // Show thank you message
+                      thankYouMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                                     thankYouMessage.classList.add('hidden');
+                    // Reset form for new data entry
+                       resetForm();
+                }, 2000);
+                } else {
+                              alert('Please select a rating.');
+            }
+        });
+
+        // Close modal on clicking outside of it
+                     window.addEventListener('click', (e) => {
+              if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+                // Handle rating selection
+        ratingScale.addEventListener('click', (e) => {
+                       if (e.target.tagName === 'SPAN') {
+                selectedRating = e.target.textContent;
+                    // Highlight selected rating
+                Array.from(ratingScale.children).forEach(span => {
+                        span.classList.remove('selected');
+                });
+                e.target.classList.add('selected');
+            }
+        });
+
+                   // Handle rating hover form poor to average to Best quality
+        ratingScale.addEventListener('mouseover', (e) => {
+            if (e.target.tagName === 'SPAN') {
+                const rating = parseInt(e.target.getAttribute('data-rating'));
+                if (rating >= 1 && rating <= 3) {
+                    e.target.textContent = 'Poor';
+                } else if (rating >= 4 && rating <= 6) {
+                    e.target.textContent = 'Average';
+                } else if (rating >= 7 && rating <= 10) {
+                    e.target.textContent = 'Best Quality';
+                }
+            }
+        });
+
+                  // Reset rating text on mouseout
+        ratingScale.addEventListener('mouseout', (e) => {
+               if (e.target.tagName === 'SPAN') {
+                         e.target.textContent = e.target.getAttribute('data-rating');
+            }
+        });
+
+                     // Reset form function so that new data maybe enterd
+        function resetForm() {
+                   selectedRating = null;
+            comments.value = '';
+            Array.from(ratingScale.children).forEach(span => {
+                span.classList.remove('selected');
+            });
+        }
+    </script> 
 </body>
 </html>
